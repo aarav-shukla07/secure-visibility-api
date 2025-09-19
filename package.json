@@ -1,0 +1,29 @@
+{
+  "name": "secure-visibility-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aarav-shukla07/secure-visibility-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aarav-shukla07/secure-visibility-api/issues"
+  },
+  "homepage": "https://github.com/aarav-shukla07/secure-visibility-api#readme",
+  "dependencies": {
+    "bindings": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/bindings": "^1.5.5",
+    "electron": "^38.1.2",
+    "node-addon-api": "^8.5.0",
+    "node-gyp": "^11.4.2"
+  }
+}
