@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "node-addon-api": "^8.5.0"
+  },
+  "devDependencies": {
+    "@types/bindings": "^1.5.5",
+    "@types/node": "^24.5.2"
+  }
+}
