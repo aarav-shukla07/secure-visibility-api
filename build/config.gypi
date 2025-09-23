@@ -495,15 +495,15 @@
     "python": "C:\\Users\\hp\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
     "standalone_static_library": 1,
     "msbuild_path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe",
-    "user_agent": "npm/10.9.3 node/v22.19.0 win32 ia32 workspaces/false",
-    "userconfig": "C:\\Users\\hp\\.npmrc",
-    "prefix": "C:\\Users\\hp\\AppData\\Roaming\\npm",
-    "npm_version": "10.9.3",
-    "node_gyp": "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
-    "local_prefix": "C:\\Users\\hp\\Desktop\\Projects\\secure-visibility-api",
-    "init_module": "C:\\Users\\hp\\.npm-init.js",
-    "global_prefix": "C:\\Users\\hp\\AppData\\Roaming\\npm",
+    "cache": "C:\\Users\\hp\\AppData\\Local\\npm-cache",
     "globalconfig": "C:\\Users\\hp\\AppData\\Roaming\\npm\\etc\\npmrc",
-    "cache": "C:\\Users\\hp\\AppData\\Local\\npm-cache"
+    "global_prefix": "C:\\Users\\hp\\AppData\\Roaming\\npm",
+    "init_module": "C:\\Users\\hp\\.npm-init.js",
+    "local_prefix": "C:\\Users\\hp\\Desktop\\Projects\\secure-visibility-api",
+    "node_gyp": "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
+    "npm_version": "10.9.3",
+    "prefix": "C:\\Users\\hp\\AppData\\Roaming\\npm",
+    "userconfig": "C:\\Users\\hp\\.npmrc",
+    "user_agent": "npm/10.9.3 node/v22.19.0 win32 ia32 workspaces/false"
   }
 }
