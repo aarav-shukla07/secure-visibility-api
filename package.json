@@ -1,32 +1,30 @@
 {
   "name": "secure-visibility-api",
   "version": "1.0.0",
-  "description": "An Electron API to prevent window content from being screen-captured.",
+  "description": "Protect Electron app content from being captured or recorded.",
   "main": "dist/main.js",
   "scripts": {
     "start": "npm run build && electron .",
     "build": "npm run build:native && npm run build:ts",
-    "build:native": "node-gyp rebuild",
-    "build:ts": "tsc",
-    "watch": "tsc -w"
+    "build:native": "node-gyp rebuild --arch=x64",
+    "build:ts": "tsc"
   },
   "keywords": [
     "electron",
     "security",
-    "screen-capture",
-    "privacy"
+    "privacy",
+    "capture-protection"
   ],
-  "author": "Your Name",
-  "license": "MIT",
-  "dependencies": {
-    "node-addon-api": "^7.1.0",
-    "bindings": "^1.5.0"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "electron": "^28.0.0",
-    "node-gyp": "^10.0.1",
+    "node-gyp": "^10.3.1",
     "typescript": "^5.3.3"
   },
-  "gypfile": true
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^7.1.0"
+  }
 }
 

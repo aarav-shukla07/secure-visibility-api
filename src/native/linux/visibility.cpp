@@ -1,18 +1,26 @@
-#include <napi.h>
 #include <iostream>
+#include "../visibility.h"
 
-// Linux desktop environments (X11, Wayland) do not have a robust,
-// standardized API for preventing window capture like Windows and macOS.
-// This function serves as a placeholder and logs a warning.
-//
-// Possible avenues for a partial implementation (all with significant drawbacks):
-// 1. X11 Composite Extension: Redirecting window content can sometimes hide it,
-//    but it's complex and often bypassed by modern screen recorders.
-// 2. Wayland: Security is tighter by design, but there's no standard protocol
-//    for an application to request capture prevention.
-//
-// For now, we acknowledge the limitation.
-void setWindowVisibility(void* handle, bool preventCapture) {
-    std::cerr << "Warning: Secure window visibility is not reliably supported on Linux." << std::endl;
-    // No-op
+// Final and correct implementation for Linux (Ubuntu).
+// IMPORTANT: This is a placeholder implementation.
+bool setWindowProtectedImpl(void* handle, bool enable) {
+    // Linux desktop environments (based on X11 or Wayland) do not have a
+    // standardized, reliable API for preventing screen capture that works across all
+    // distributions and desktop environments (like GNOME, KDE, etc.).
+    //
+    // - X11 is inherently insecure by design, allowing windows to easily read each other's content.
+    // - Wayland is more secure, but controlling capture protection requires interacting
+    //   with specific compositor protocols, which are not universal or simple to use.
+    //
+    // Therefore, this function serves as a documented acknowledgment of this
+    // limitation. It will print a warning to the console and return `false` to indicate
+    // that the feature is not supported on this platform.
+
+    if (enable) {
+        std::cerr << "SecureVisibility Warning (Linux): Screen capture protection is not supported on Linux and has not been enabled." << std::endl;
+    }
+
+    // Return false to signal to the calling code that the operation was not successful.
+    return false;
 }
+

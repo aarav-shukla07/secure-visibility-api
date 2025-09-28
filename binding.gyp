@@ -1,48 +1,48 @@
-# This file configures node-gyp to compile the native C++ addon.
-# It defines the source files and platform-specific settings.
 {
-  'targets': [
+  "targets": [
     {
-      'target_name': 'visibility_addon',
-      'sources': [
-        'src/native/main.cpp'
+      "target_name": "visibility_addon",
+      "sources": [
+        "src/native/main.cpp"
       ],
-      'include_dirs': [
+      "include_dirs": [
         "<!(node -p \"require('node-addon-api').include\")"
       ],
-      'dependencies': [
+      "dependencies": [
         "<!(node -p \"require('node-addon-api').gyp\")"
       ],
-      'cflags!': ['-fno-exceptions'],
-      'cflags_cc!': ['-fno-exceptions'],
-      'xcode_settings': {
-        'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
-        'CLANG_CXX_LIBRARY': 'libc++',
-        'MACOSX_DEPLOYMENT_TARGET': '10.13' # Set a reasonable deployment target
-      },
-      'msvs_settings': {
-        'VCCLCompilerTool': { 
-          'ExceptionHandling': 1,
-          # This line explicitly tells the Windows compiler where to find napi.h
-          'AdditionalIncludeDirectories': [
-            '<!(node -p "require(\'node-addon-api\').include")'
-          ]
-        },
-      },
+      "cflags!": [ "-fno-exceptions" ],
+      "cflags_cc!": [ "-fno-exceptions" ],
+      "defines": [ "NAPI_DISABLE_CPP_EXCEPTIONS" ],
+      
       'conditions': [
+        # Correct syntax for checking OS is 'OS=="win"'
         ['OS=="win"', {
-          'sources': ['src/native/win/visibility.cpp'],
-          'libraries': ['-luser32'] # Link against the User32 library for WinAPI functions
+          'sources': [
+            'src/native/win/visibility.cpp'
+          ],
+          'msvs_settings': {
+            'VCCLCompilerTool': {
+              'AdditionalIncludeDirectories': [
+                '<!(node -p "require(\'node-addon-api\').include")'
+              ],
+            },
+          },
         }],
         ['OS=="mac"', {
-          'sources': ['src/native/mac/visibility.mm'], # .mm for Objective-C++
+          'sources': [
+            'src/native/mac/visibility.mm'
+          ],
           'xcode_settings': {
-            'OTHER_LDFLAGS': ['-framework AppKit', '-framework CoreGraphics']
-          }
+            'OTHER_LDFLAGS': [
+              '-framework AppKit'
+            ],
+          },
         }],
         ['OS=="linux"', {
-          'sources': ['src/native/linux/visibility.cpp'],
-          'libraries': ['-lX11'] # Link against the X11 library
+          'sources': [
+            'src/native/linux/visibility.cpp'
+          ]
         }]
       ]
     }

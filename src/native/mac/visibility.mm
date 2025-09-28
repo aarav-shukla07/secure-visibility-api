@@ -1,25 +1,34 @@
-#import <AppKit/AppKit.h>
-#include <napi.h>
+#import <Cocoa/Cocoa.h>
+#include <iostream>
+#include "../visibility.h"
 
-void setWindowVisibility(void* handle, bool preventCapture) {
-    // On macOS, the native handle from Electron is a pointer to the NSView.
-    NSView* view = (__bridge NSView*)handle;
-    if (!view) {
-        return;
-    }
+// This is the final, production-ready implementation for macOS.
+bool setWindowProtectedImpl(void* handle, bool enable) {
+    // On macOS, Electron provides a handle to the NSView, not the NSWindow directly.
+    NSView* view = static_cast<NSView*>(handle);
 
+    // We can get the parent window from the view.
     NSWindow* window = [view window];
+
     if (!window) {
-        return;
+        std::cerr << "SecureVisibility Error (macOS): Could not get NSWindow from the provided handle." << std::endl;
+        return false;
     }
 
-    // Set the window's sharing type.
-    // NSWindowSharingTypeNone prevents the content from being captured.
-    // NSWindowSharingTypeReadWrite is the default.
-    NSWindowSharingType sharingType = preventCapture ? NSWindowSharingTypeNone : NSWindowSharingTypeReadWrite;
-    
-    // Ensure this is run on the main thread, as it's a UI operation.
+    // All UI updates on macOS must happen on the main thread for stability.
+    // We dispatch our code to the main queue to ensure thread safety.
     dispatch_async(dispatch_get_main_queue(), ^{
-        [window setSharingType:sharingType];
+        if (enable) {
+            // NSWindowSharingNone prevents the window's contents from being captured by other apps.
+            // This makes it invisible in screen recordings and shares.
+            [window setSharingType:NSWindowSharingNone];
+        } else {
+            // NSWindowSharingReadOnly is the default, allowing the window to be seen.
+            [window setSharingType:NSWindowSharingReadOnly];
+        }
     });
+
+    // Return true to indicate the command was successfully dispatched.
+    return true;
 }
+
